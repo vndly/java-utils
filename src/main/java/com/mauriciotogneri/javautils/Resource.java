@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jsonschema;
+package com.mauriciotogneri.javautils;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;

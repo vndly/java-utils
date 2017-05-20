@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jsonschema;
+package com.mauriciotogneri.javautils;
 
 import java.text.NumberFormat;
 import java.util.Locale;

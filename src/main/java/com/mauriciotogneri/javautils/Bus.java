@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jsonschema;
+package com.mauriciotogneri.javautils;
 
 import org.greenrobot.eventbus.EventBus;
 

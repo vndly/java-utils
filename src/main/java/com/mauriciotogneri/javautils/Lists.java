@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jsonschema;
+package com.mauriciotogneri.javautils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

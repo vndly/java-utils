@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jsonschema;
+package com.mauriciotogneri.javautils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
