@@ -20,6 +20,6 @@ and the dependency:
 <dependency>
     <groupId>com.github.mauriciotogneri</groupId>
     <artifactId>java-utils</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```

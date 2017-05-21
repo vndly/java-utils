@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -36,17 +37,7 @@ public class Json
 
     public static Gson create(Boolean prettyPrint)
     {
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter());
-        builder.registerTypeAdapterFactory(new EnumAdapterFactory());
-
-        if (prettyPrint)
-        {
-            builder.setPrettyPrinting();
-            builder.disableHtmlEscaping();
-        }
-
-        return builder.create();
+        return builder(prettyPrint).create();
     }
 
     public static Gson create()
@@ -146,6 +137,30 @@ public class Json
         }
     }
 
+    private static class DateTypeAdapter implements JsonSerializer<Date>, JsonDeserializer<Date>
+    {
+        private final FormattedDateTime formatter = new FormattedDateTime();
+
+        @Override
+        public JsonElement serialize(Date date, Type type, JsonSerializationContext context)
+        {
+            return new JsonPrimitive(formatter.date(new DateTime(date), Locale.getDefault()));
+        }
+
+        @Override
+        public Date deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException
+        {
+            try
+            {
+                return formatter.date(jsonElement.getAsString()).toDate();
+            }
+            catch (Exception e)
+            {
+                throw new RuntimeException(String.format("Error parsing date: %s", jsonElement.getAsString()));
+            }
+        }
+    }
+
     private static class EnumAdapterFactory implements TypeAdapterFactory
     {
         @Override
@@ -224,5 +239,21 @@ public class Json
         {
             out.value(value == null ? null : constantToName.get(value));
         }
+    }
+
+    public static GsonBuilder builder(Boolean prettyPrint)
+    {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter());
+        builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
+        builder.registerTypeAdapterFactory(new EnumAdapterFactory());
+
+        if (prettyPrint)
+        {
+            builder.setPrettyPrinting();
+            builder.disableHtmlEscaping();
+        }
+
+        return builder;
     }
 }
