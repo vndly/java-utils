@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.mauriciotogneri</groupId>
-    <artifactId>java-utils</artifactId>
+    <groupId>com.mauriciotogneri</groupId>
+    <artifactId>javautils</artifactId>
     <version>0.3.0</version>
     <name>Java Utils</name>
     <packaging>jar</packaging>
@@ -31,6 +31,11 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
                 <executions>
@@ -50,6 +55,13 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <url>https://api.bintray.com/maven/mauriciotogneri/maven/javautils/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
 
