@@ -1,3 +1,6 @@
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/mauriciotogneri/java-utils/blob/master/LICENSE.md)
+[![Download](https://api.bintray.com/packages/mauriciotogneri/maven/javautils/images/download.svg)](https://bintray.com/mauriciotogneri/maven/javautils/_latestVersion)
+
 # Java Utils
 A collection of Java utility classes.
 
@@ -8,8 +11,8 @@ Add the following code to your **pom.xml**:
 ```xml
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+		<id>jcenter</id>
+		<url>https://jcenter.bintray.com</url>
     </repository>
 </repositories>
 ```
@@ -19,7 +22,7 @@ and the dependency:
 ```xml
 <dependency>
     <groupId>com.github.mauriciotogneri</groupId>
-    <artifactId>java-utils</artifactId>
-    <version>0.3.0</version>
+    <artifactId>javautils</artifactId>
+    <version>0.4.0</version>
 </dependency>
 ```
