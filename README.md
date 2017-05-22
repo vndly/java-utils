@@ -11,8 +11,8 @@ Add the following code to your **pom.xml**:
 ```xml
 <repositories>
     <repository>
-		<id>jcenter</id>
-		<url>https://jcenter.bintray.com</url>
+        <id>jcenter</id>
+        <url>https://jcenter.bintray.com</url>
     </repository>
 </repositories>
 ```
