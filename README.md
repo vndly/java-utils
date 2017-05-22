@@ -21,7 +21,7 @@ and the dependency:
 
 ```xml
 <dependency>
-    <groupId>com.github.mauriciotogneri</groupId>
+    <groupId>com.mauriciotogneri</groupId>
     <artifactId>javautils</artifactId>
     <version>0.4.0</version>
 </dependency>
