@@ -26,3 +26,12 @@ and the dependency:
     <version>0.4.0</version>
 </dependency>
 ```
+
+or if you use Gradle:
+
+```groovy
+dependencies
+{
+    compile 'com.mauriciotogneri:javautils:0.4.0'
+}
+```
