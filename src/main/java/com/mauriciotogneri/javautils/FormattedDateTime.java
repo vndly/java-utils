@@ -58,11 +58,18 @@ public class FormattedDateTime
 
     public String date(DateTime dateTime, DateTimeZone timeZone, Locale locale, String defaultValue)
     {
-        try
+        if ((dateTime != null) && (timeZone != null) && (locale != null))
         {
-            return formatter.withZone(timeZone).withLocale(locale).print(dateTime);
+            try
+            {
+                return formatter.withZone(timeZone).withLocale(locale).print(dateTime);
+            }
+            catch (Exception e)
+            {
+                return defaultValue;
+            }
         }
-        catch (Exception e)
+        else
         {
             return defaultValue;
         }
@@ -87,11 +94,18 @@ public class FormattedDateTime
 
     public DateTime date(String timestamp, DateTimeZone timeZone, DateTime defaultValue)
     {
-        try
+        if ((timestamp != null) && (timeZone != null))
         {
-            return formatter.withZone(timeZone).parseDateTime(timestamp);
+            try
+            {
+                return formatter.withZone(timeZone).parseDateTime(timestamp);
+            }
+            catch (Exception e)
+            {
+                return defaultValue;
+            }
         }
-        catch (Exception e)
+        else
         {
             return defaultValue;
         }
