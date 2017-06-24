@@ -2,6 +2,7 @@ package com.mauriciotogneri.javautils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Lists
@@ -16,7 +17,7 @@ public class Lists
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T[] asArray(List<T> list, Class<T> clazz)
+    public static <T> T[] asArray(Collection<T> list, Class<T> clazz)
     {
         T[] result = (T[]) Array.newInstance(clazz, list.size());
 
