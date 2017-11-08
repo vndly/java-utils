@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,11 +90,6 @@ public class Record
         return !newFile.exists() && file.renameTo(newFile);
     }
 
-    public boolean isDirectory()
-    {
-        return file.isDirectory();
-    }
-
     public List<Record> children()
     {
         List<Record> result = new ArrayList<>();
@@ -122,6 +118,23 @@ public class Record
         return file.isFile();
     }
 
+    public boolean isDirectory()
+    {
+        return file.isDirectory();
+    }
+
+    public boolean create() throws IOException
+    {
+        if (isFile())
+        {
+            return createFile();
+        }
+        else
+        {
+            return createFolder();
+        }
+    }
+
     public boolean createFile() throws IOException
     {
         File parent = file.getParentFile();
@@ -131,9 +144,7 @@ public class Record
 
     public boolean createFolder() throws IOException
     {
-        File parent = file.getParentFile();
-
-        return (parent.exists() || parent.mkdirs());
+        return (file.exists() || file.mkdirs());
     }
 
     public boolean copy(Record target) throws IOException
@@ -156,41 +167,127 @@ public class Record
         if (isDirectory())
         {
             Record targetFolder = new Record(target, name());
-            targetFolder.createFolder();
 
-            boolean allCopied = true;
-
-            for (Record record : children())
+            if (targetFolder.createFolder())
             {
-                allCopied &= record.copy(targetFolder, delete);
-            }
+                boolean allCopied = true;
 
-            if (delete && allCopied)
-            {
-                return delete();
+                for (Record record : children())
+                {
+                    allCopied &= record.copy(targetFolder, delete);
+                }
+
+                if (delete && allCopied)
+                {
+                    return delete();
+                }
+                else
+                {
+                    return allCopied;
+                }
             }
             else
             {
-                return allCopied;
+                return false;
             }
         }
         else
         {
             Record targetFile = new Record(target, name());
-            targetFile.createFile();
 
-            InputStream input = new FileInputStream(file);
-            OutputStream output = new FileOutputStream(targetFile.file);
+            if (targetFile.createFile())
+            {
+                InputStream input = new FileInputStream(file);
+                OutputStream output = new FileOutputStream(targetFile.file);
 
-            Streams.copy(input, output);
+                Streams.copy(input, output);
 
-            return !delete || delete();
+                return !delete || delete();
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
     public boolean delete()
     {
+        if (isFile())
+        {
+            return deleteFile();
+        }
+        else
+        {
+            return deleteFolder();
+        }
+    }
+
+    public boolean deleteFile()
+    {
         return file.exists() && file.delete();
+    }
+
+    public boolean deleteFolder()
+    {
+        return file.exists() && empty() && file.delete();
+    }
+
+    public boolean empty()
+    {
+        if (isFile())
+        {
+            return emptyFile();
+        }
+        else
+        {
+            return emptyFolder();
+        }
+    }
+
+    public boolean emptyFile()
+    {
+        try
+        {
+            PrintWriter writer = new PrintWriter(file);
+            writer.close();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public boolean emptyFolder()
+    {
+        return emptyFolder(file);
+    }
+
+    private boolean emptyFolder(File root)
+    {
+        boolean allDeleted = true;
+
+        File[] files = root.listFiles();
+
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if (file.isDirectory())
+                {
+                    allDeleted &= emptyFolder(file);
+                    allDeleted &= file.delete();
+                }
+                else
+                {
+                    allDeleted &= file.delete();
+                }
+            }
+        }
+
+        return allDeleted;
     }
 
     public String string() throws IOException
