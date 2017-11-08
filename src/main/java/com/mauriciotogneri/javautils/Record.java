@@ -188,15 +188,6 @@ public class Record
         }
     }
 
-    public static void main(String[] args) throws IOException
-    {
-        Record record = new Record("/home/max/TEST/aaa/Screenshot from 2017-06-10 16-51-09.png");
-
-        boolean result = record.move(new Record("/home/max/TEST/ddd"));
-
-        System.out.print(result);
-    }
-
     public boolean delete()
     {
         return file.exists() && file.delete();

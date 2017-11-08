@@ -10,11 +10,16 @@ public class Bus
 
     public static void register(Object subscriber)
     {
+        register(subscriber, EventBus.getDefault());
+    }
+
+    public static void register(Object subscriber, EventBus bus)
+    {
         try
         {
-            if (!EventBus.getDefault().isRegistered(subscriber))
+            if (!bus.isRegistered(subscriber))
             {
-                EventBus.getDefault().register(subscriber);
+                bus.register(subscriber);
             }
         }
         catch (Exception e)
@@ -25,11 +30,16 @@ public class Bus
 
     public static void unregister(Object subscriber)
     {
+        unregister(subscriber, EventBus.getDefault());
+    }
+
+    public static void unregister(Object subscriber, EventBus bus)
+    {
         try
         {
-            if (EventBus.getDefault().isRegistered(subscriber))
+            if (bus.isRegistered(subscriber))
             {
-                EventBus.getDefault().unregister(subscriber);
+                bus.unregister(subscriber);
             }
         }
         catch (Exception e)
@@ -40,6 +50,11 @@ public class Bus
 
     public static void post(Object event)
     {
-        EventBus.getDefault().post(event);
+        post(event, EventBus.getDefault());
+    }
+
+    public static void post(Object event, EventBus bus)
+    {
+        bus.post(event);
     }
 }
