@@ -8,14 +8,19 @@ public class Strings
     {
     }
 
-    public static Boolean isEmpty(String value)
+    public static boolean isEmpty(String value)
     {
         return (value == null) || (value.isEmpty());
     }
 
-    public static Boolean isNotEmpty(String value)
+    public static boolean isNotEmpty(String value)
     {
         return !isEmpty(value);
+    }
+
+    public static String capitalize(String text)
+    {
+        return isEmpty(text) ? text : (text.substring(0, 1).toUpperCase() + text.substring(1));
     }
 
     public static String trim(String value)
@@ -45,7 +50,7 @@ public class Strings
         return join(Arrays.asList(list), separator);
     }
 
-    public static Boolean equals(String a, String b)
+    public static boolean equals(String a, String b)
     {
         return (a != null) && (b != null) && (a.equals(b));
     }

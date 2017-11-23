@@ -11,67 +11,67 @@ public class Randomized
     }
 
     // 3 out of 5 => [ 0 1 2 ] 3 4
-    public static Boolean chance(Integer valid, Integer outOf)
+    public static boolean chance(int valid, int outOf)
     {
         return (nextInt(outOf) < valid);
     }
 
-    public static Boolean chance(Integer outOf)
+    public static boolean chance(int outOf)
     {
         return (nextInt(outOf) == 0);
     }
 
-    public static Integer of(Integer min, Integer max)
+    public static int of(int min, int max)
     {
         return nextInt((max - min) + 1) + min;
     }
 
-    public static Integer nextInt()
+    public static int nextInt()
     {
         return random.nextInt();
     }
 
-    public static Integer nextInt(Integer max)
+    public static int nextInt(int max)
     {
         return random.nextInt(max);
     }
 
-    public static Long nextLong()
+    public static long nextLong()
     {
         return random.nextLong();
     }
 
-    public static Double nextDouble()
+    public static double nextDouble()
     {
         return random.nextDouble();
     }
 
-    public static Double nextDouble(Integer places)
+    public static double nextDouble(int places)
     {
         return nextDouble() * Math.pow(10, places);
     }
 
-    public static Double nextDouble(Double max)
+    public static double nextDouble(double max)
     {
         return nextDouble() * max;
     }
 
-    public static Double nextSignedDouble()
+    public static double nextSignedDouble()
     {
         return nextDouble() * sign();
     }
 
-    public static Double nextSignedDouble(Double max)
+    public static double nextSignedDouble(double max)
     {
         return nextDouble(max) * sign();
     }
 
-    public static Integer sign()
+    public static int sign()
     {
         return (nextBoolean() ? 1 : -1);
     }
 
-    public static Boolean nextBoolean()
+    public static boolean nextBoolean()
     {
         return random.nextBoolean();
     }

@@ -18,7 +18,7 @@ public class FormattedNumber
         this.withSign = withSign;
     }
 
-    public String format(Double value)
+    public String format(double value)
     {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 

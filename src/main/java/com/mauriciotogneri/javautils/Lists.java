@@ -26,6 +26,16 @@ public class Lists
         return result;
     }
 
+    @SuppressWarnings("unchecked")
+    private <T> T[] arrayAppend(T[] array, T value, Class<T> clazz)
+    {
+        T[] result = (T[]) Array.newInstance(clazz, array.length + 1);
+        System.arraycopy(array, 0, result, 0, array.length);
+        result[result.length - 1] = value;
+
+        return result;
+    }
+
     public static <T> List<T> split(String list, String separator, Factory<T> factory)
     {
         List<T> result = new ArrayList<>();

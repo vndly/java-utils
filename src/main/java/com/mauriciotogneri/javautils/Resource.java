@@ -23,14 +23,13 @@ public class Resource
     public static byte[] bytes(InputStream inputStream) throws IOException
     {
         int read;
-        int size = 1024;
-        byte[] buf = new byte[size];
+        byte[] buffer = new byte[1024];
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-        while ((read = inputStream.read(buf, 0, size)) != -1)
+        while ((read = inputStream.read(buffer, 0, buffer.length)) != -1)
         {
-            bos.write(buf, 0, read);
+            bos.write(buffer, 0, read);
         }
 
         return bos.toByteArray();
@@ -68,9 +67,29 @@ public class Resource
         }
     }
 
-    public static Boolean close(Closeable resource)
+    public static boolean close(Closeable resource)
     {
-        Boolean result = false;
+        boolean result = false;
+
+        if (resource != null)
+        {
+            try
+            {
+                resource.close();
+                result = true;
+            }
+            catch (Exception e)
+            {
+                // exception swallowed on purpose
+            }
+        }
+
+        return result;
+    }
+
+    public static boolean close(AutoCloseable resource)
+    {
+        boolean result = false;
 
         if (resource != null)
         {

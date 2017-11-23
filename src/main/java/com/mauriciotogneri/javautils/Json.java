@@ -35,7 +35,7 @@ public class Json
 {
     private static final Gson gson = new Gson();
 
-    public static Gson create(Boolean prettyPrint)
+    public static Gson create(boolean prettyPrint)
     {
         return builder(prettyPrint).create();
     }
@@ -106,6 +106,11 @@ public class Json
         newList.toArray(result);
 
         return result;
+    }
+
+    public static <T> T jsonToObject(JsonToObject<T> object)
+    {
+        return (object != null) ? object.object() : null;
     }
 
     public interface JsonToObject<T>
@@ -241,7 +246,7 @@ public class Json
         }
     }
 
-    public static GsonBuilder builder(Boolean prettyPrint)
+    public static GsonBuilder builder(boolean prettyPrint)
     {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter());
