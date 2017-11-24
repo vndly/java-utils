@@ -27,7 +27,7 @@ public class Lists
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T[] arrayAppend(T[] array, T value, Class<T> clazz)
+    public static <T> T[] arrayAppend(T[] array, T value, Class<T> clazz)
     {
         T[] result = (T[]) Array.newInstance(clazz, array.length + 1);
         System.arraycopy(array, 0, result, 0, array.length);
