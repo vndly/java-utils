@@ -8,11 +8,6 @@ public class Bus
     {
     }
 
-    public static void register(Object subscriber)
-    {
-        register(subscriber, EventBus.getDefault());
-    }
-
     public static void register(Object subscriber, EventBus bus)
     {
         try
@@ -28,11 +23,6 @@ public class Bus
         }
     }
 
-    public static void unregister(Object subscriber)
-    {
-        unregister(subscriber, EventBus.getDefault());
-    }
-
     public static void unregister(Object subscriber, EventBus bus)
     {
         try
@@ -46,15 +36,5 @@ public class Bus
         {
             // ignore
         }
-    }
-
-    public static void post(Object event)
-    {
-        post(event, EventBus.getDefault());
-    }
-
-    public static void post(Object event, EventBus bus)
-    {
-        bus.post(event);
     }
 }
