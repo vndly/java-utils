@@ -23,7 +23,7 @@ and the dependency:
 <dependency>
     <groupId>com.mauriciotogneri</groupId>
     <artifactId>javautils</artifactId>
-    <version>2.9.1</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
@@ -32,6 +32,6 @@ or if you use Gradle:
 ```groovy
 dependencies
 {
-    compile 'com.mauriciotogneri:javautils:2.9.1'
+    compile 'com.mauriciotogneri:javautils:3.0.0'
 }
 ```
