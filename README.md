@@ -32,6 +32,6 @@ or if you use Gradle:
 ```groovy
 dependencies
 {
-    compile 'com.mauriciotogneri:javautils:3.2.0'
+    compile 'com.mauriciotogneri:javautils:3.3.0'
 }
 ```

@@ -65,7 +65,7 @@ public class HttpStatus
     // 5xx Server Error
     public static final Integer INTERNAL_SERVER_ERROR = 500;
     public static final Integer NOT_IMPLEMENTED_ = 501;
-    public static final Integer BAD_GETAWAT = 502;
+    public static final Integer BAD_GATEWAY = 502;
     public static final Integer SERVICE_UNAVAILABLE = 503;
     public static final Integer GATEWAY_TIMEOUT = 504;
     public static final Integer HTTP_VERSION_NOT_SUPPORTED = 505;
