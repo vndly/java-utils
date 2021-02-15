@@ -5,7 +5,9 @@ A collection of Java utility classes.
 
 ## Installation
 
-Add the following code to your **pom.xml**:
+### Maven
+
+Add the following code to your `pom.xml`:
 
 ```xml
 <repositories>
@@ -24,4 +26,26 @@ And the dependency:
     <artifactId>java-utils</artifactId>
     <version>3.4.0</version>
 </dependency>
+```
+
+### Gradle
+
+Add the following code to your root `build.gradle`:
+
+```groovy
+allprojects
+{
+    repositories
+    {
+        maven
+        {
+            url 'https://jitpack.io'
+        }
+    }
+}
+```
+
+Add the following code to your module `build.gradle`:
+```groovy
+implementation 'com.github.mauriciotogneri:java-utils:3.4.0'
 ```
