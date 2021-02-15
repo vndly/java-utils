@@ -20,8 +20,8 @@ And the dependency:
 
 ```xml
 <dependency>
-    <groupId>com.mauriciotogneri</groupId>
-    <artifactId>javautils</artifactId>
+    <groupId>com.github.mauriciotogneri</groupId>
+    <artifactId>java-utils</artifactId>
     <version>3.4.0</version>
 </dependency>
 ```
